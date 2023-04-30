@@ -21,13 +21,11 @@
 		cursor: pointer;
 		border-radius: 15px;
 	}
-	
 	button:hover {
 		box-shadow: inset 2px 2px 5px rgba(163, 177, 198, 0.7),
 		inset -2px -2px 5px rgba(255, 255, 255, 0.7);
 		filter: brightness(1.05);
 	}
-
 	.remote {
 		display: grid;
 		grid-template-columns: repeat(5, 1fr);
@@ -40,36 +38,30 @@
 		'. left select right .'
 		'. . down . .';
 	}
-
 	.back {
 		grid-area: back;
 	}
-
 	.home {
 		grid-area: home;
 	}
-
 	.up {
 		grid-area: up;
 	}
-
 	.left {
 		grid-area: left;
 	}
-
 	.select {
 		grid-area: select;
 	}
-
 	.right {
 		grid-area: right;
 	}
-
 	.down {
 		grid-area: down;
 	}
 	</style>
 </head>
+
 <body>
 	<div class="remote">
 	  <button class="back" onclick="sendRequest('Back')">&#x21A9<br>Back</button>
