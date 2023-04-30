@@ -74,7 +74,7 @@
 </body>
 <script>
 	async function sendRequest(command) {
-	  const url = `<ROKU_IP_ADDRESS>:8060/keypress/${command}`;
+	  const url = `http://<ROKU_IP_ADDRESS>:8060/keypress/${command}`;
 	  const response = await fetch(url, { method: 'POST' });
 	  console.log(`Sent command: ${command}, status: ${response.status}`);
 	}
