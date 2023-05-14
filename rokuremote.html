@@ -14,7 +14,8 @@
 		background: #cecece;
 		border: none;
 		padding: 20px 40px;
-		font-size: 24px;
+		font-size: 28px;
+		font-weight: 900;
 		box-shadow: 5px 5px 10px rgba(163, 177, 198, 0.5),
 		-5px -5px 10px rgba(255, 255, 255, 0.6);
 		cursor: pointer;
@@ -27,15 +28,17 @@
 	}
 	.remote {
 		display: grid;
-		grid-template-columns: repeat(5, 1fr);
-		grid-template-rows: repeat(5, 1fr);
+		grid-template-columns: repeat(6, 1fr);
+		grid-template-rows: repeat(6, 1fr);
 		gap: 20px;
 		margin: 10px;
 		grid-template-areas: 
-		'back . . . home'
-		'. . up . .'
-		'. left select right .'
-		'. . down . .';
+		'back back . . home home'
+		'. . up up . .'
+		'left left select select right right'
+		'. . down down . .'
+		'instantreplay instantreplay . . info info'
+		' reverse . play play . forward '
 	}
 	.back {
 		grid-area: back;
@@ -58,23 +61,44 @@
 	.down {
 		grid-area: down;
 	}
+	.instantreplay {
+		grid-area: instantreplay;
+	}
+	.info {
+		grid-area: info;
+	}
+	.reverse {
+		grid-area: reverse;
+	}
+	.play {
+		grid-area: play;
+	}
+	.forward {
+		grid-area: forward;
+	}
+
 	</style>
 </head>
 
 <body>
 	<div class="remote">
-	  <button class="back" onclick="sendRequest('Back')">&#x21A9<br>Back</button>
-	  <button class="home" onclick="sendRequest('Home')">&#x2302<br>Home</button>
+	  <button class="back" onclick="sendRequest('Back')">&#x21A9</button>
+	  <button class="home" onclick="sendRequest('Home')">&#x2302</button>
 	  <button class="left" onclick="sendRequest('Left')">&larr;</button>
 	  <button class="up" onclick="sendRequest('Up')">&uarr;</button>
 	  <button class="select" onclick="sendRequest('Select')">&#x03BF</button>
 	  <button class="right" onclick="sendRequest('Right')">&rarr;</button>
 	  <button class="down" onclick="sendRequest('Down')">&darr;</button>
+	  <button class="instantreplay" onclick="sendRequest('InstantReplay')">&#x21BA</button>
+	  <button class="info" onclick="sendRequest('Info')">&#x2731</button>
+	  <button class="reverse" onclick="sendRequest('Rev')">&#x219E</button>
+	  <button class="play" onclick="sendRequest('Play')">&#x25B6</button>
+	  <button class="forward" onclick="sendRequest('Fwd')">&#x21A0</button>
 	</div>
 </body>
 <script>
 	async function sendRequest(command) {
-	  const url = `http://<ROKU_IP_ADDRESS>:8060/keypress/${command}`;
+	  const url = `http://<ROKU_IP_ADDRESS>/keypress/${command}`;
 	  const response = await fetch(url, { method: 'POST' });
 	  console.log(`Sent command: ${command}, status: ${response.status}`);
 	}
